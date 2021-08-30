@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+   <title>Spotify online</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://sp-bootstrap.global.ssl.fastly.net/8.0.0/sp-bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://sp-bootstrap.global.ssl.fastly.net/8.0.0/sp-bootstrap.js"></script>
+    
+    <!-- Include the Web Playback SDK -->
+    <script src="https://sdk.scdn.co/spotify-player.js"></script>
+</head>
+
+<body>
+    
+    <h1>Spotify website wow</h1>
+        <div>
+          <h5>Number of tracks</h5>
+          <select id="number-tracks" class="form-control">
+            <option>10</option>
+            <option selected>20</option>
+            <option>30</option>
+            <option>40</option>
+            <option>50</option>
+          </select>
+        </div>
+        <h1></h1>
+       <span class="pull-right">
+          <span>Logged in as <span id="current-user"></span></span>
+          <button class="btn btn-secondary btn-sm" onclick="logout();">Logout</button>
+        </span>
+         <div>
+          <h5>Mode</h5>
+          <div class="checkbox-inline" onclick="getRecommendations();">
+            <label>
+              <input id="mode-major" type="checkbox" value="1" checked>
+              Major
+              <span class="control-indicator"></span>
+            </label>
+          </div>
+          <div class="checkbox-inline" onclick="getRecommendations();">
+            <label>
+              <input id="mode-minor" type="checkbox" value="0" checked>
+              Minor
+              <span class="control-indicator"></span>
+            </label>
+          </div>
+          <h5>Popularity (0-100)</h5><div id="popularity-slider"></div>
+          <h5>Tempo (40-200bpm)</h5><div id="tempo-slider"></div>
+          <h5>Valence ("positivity" of the track)</h5><div id="valence-slider"></div>
+          <h5>Energy</h5><div id="energy-slider"></div>
+          <h5>Acousticness</h5><div id="acousticness-slider"></div>
+          <h5>Danceability</h5><div id="danceability-slider"></div>
+          <h5>Instrumentalness</h5><div id="instrumentalness-slider"></div>
+          <h5>Liveness</h5><div id="liveness-slider"></div>
+          <h5>Speechiness</h5><div id="speechiness-slider"></div>
+          <h6>
+            Read about what all these audio features mean <a href="https://beta.developer.spotify.com/documentation/web-api/reference/tracks/get-audio-features/#audio-features-object">here</a>.
+          </h6>
+        </div>
+        
+    
+    
+     <div id="tracks">
+        <h4>Select some genres to get recommendations</h4>
+        <!-- Tracks to be appended here -->
+      </div>
+    
+    <h1 id="genre1">beebe</h1>
+    <h1 id="number1">number1</h1>
+    
+    <button onclick="getRecommendations()">HIT ME</button>
+    
+    <script src="script.js"></script>
+
+  
+    
+</body>
+</html>
