@@ -1,4 +1,4 @@
-// Check hash for token
+// Get hash token 
 const hash = window.location.hash
     .substring(1)
     .split('&')
@@ -11,12 +11,11 @@ const hash = window.location.hash
     }, {});
 window.location.hash = '';
 
-// Set token
 let _token = hash.access_token;
 
 const authEndpoint = 'https://accounts.spotify.com/authorize';
 
-// Replace with your app's client ID, redirect URI and desired scopes
+// Clieent ID connects to spotify developers dashboarde 
 const clientId = 'f0d7eec2dc434d798222892db1bc3736';
 const redirectUri = 'http://localhost:8080/rec.html';
 const scopes = [
@@ -27,13 +26,11 @@ const scopes = [
   'user-modify-playback-state'
 ];
 
-// If there is no token, redirect to Spotify authorization
+// Redirects to login page if there is no token
 if (!_token) {
     window.location = `${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join('%20')}&response_type=token`;
 } else {
 
-    // Page setup
-    getGenresList();
     setUpSliders();
     showUser();
 
@@ -46,6 +43,7 @@ function genreLimitAlert(state) {
         $('#genreLimitAlert').hide();
     }
 }
+
 
 function setUpSliders() {
     const sliderConfig = {
@@ -94,37 +92,18 @@ function setUpSliders() {
     });
 }
 
+// Shows user name top left.
 function showUser() {
     $.get('/user?token=' + _token, function (user) {
         $('#current-user').text(user.id);
     });
 }
 
+// Lets users log out if they want to.
 function logout() {
     _token = null;
     window.open('https://accounts.spotify.com/logout');
     location.reload();
-}
-
-
-function getGenresList() {
-    $('#genres-list').empty();
-    $.get('/genres?token=' + _token, function (genres) {
-        genres.forEach(function (genre) {
-            let genreButtonElement = '<h1>' + genre + '</h1>';
-            $('#genres-list').append(genreButtonElement);
-        });
-    });
-
-    $('#genres').on('change', 'input', function () {
-        if ($('#genre :selected').length > 5) {
-            $(this).parent().removeClass("active");
-            this.checked = false;
-            genreLimitAlert("on");
-        } else {
-            genreLimitAlert("off");
-        }
-    });
 }
 
 
@@ -229,7 +208,7 @@ function getRecommendations() {
     var glen = genres.legnth
 
     if (glen > 5) {
-        $('#tracks').append('<h2>Too many genres. Pick less than 5</h2>')
+        $('#tracks').append('<h2>Too many genres. Pick less than 5!</h2>')
     } else {
 
     }
@@ -257,35 +236,10 @@ function getRecommendations() {
                 renderTracks(trackIds);
                 play(trackUris.join());
             } else {
-                $('#tracks').append('<h2>No results. Try a broader search.</h2>')
+                $('#tracks').append('<h2>Sorry, there are no results. Please widen your search criteria.</h2>')
             }
         } else {
-            $('#tracks').append('<h2>No results. Select some genres first.</h2>')
-        }
-    });
-}
-
-
-function search() {
-    var q2 = 'happier'
-    var limit2 = 5
-    $.get('/search?q=' + q2 + '&type=track&limit=' + limit2 + '&token=' + _token, function (data) {
-        $('#tracks').empty();
-        let trackIds = [];
-        let trackUris = [];
-        if (data.object.tracks) {
-            if (data.object.tracks.length > 0) {
-                data.object.tracks.forEach(function (object) {
-                    objects22.push(object.tracks.items);
-                });
-                localStorage.setItem('tracklist', trackUris.join());
-                renderTracks(trackIds);
-                play(trackUris.join());
-            } else {
-                $('#tracks').append('<h2>No results. Try a broader search.</h2>')
-            }
-        } else {
-            $('#tracks').append('<h2>No results. Select some genres first.</h2>')
+            $('#tracks').append('<h2>Select some genres, please.</h2>')
         }
     });
 }

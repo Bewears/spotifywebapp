@@ -1,4 +1,4 @@
-// Check hash for token
+// Get token 
 const hash = window.location.hash
     .substring(1)
     .split('&')
@@ -16,7 +16,7 @@ let _token = hash.access_token;
 
 const authEndpoint = 'https://accounts.spotify.com/authorize';
 
-// Replace with your app's client ID, redirect URI and desired scopes
+// Program authentication
 const clientId = 'f0d7eec2dc434d798222892db1bc3736';
 const redirectUri = 'http://localhost:8080/find.html';
 const scopes = [
@@ -27,15 +27,10 @@ const scopes = [
   'user-modify-playback-state'
 ];
 
-// If there is no token, redirect to Spotify authorization
 if (!_token) {
     window.location = `${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join('%20')}&response_type=token`;
 } else {
 
-    let deviceId;
-    let playbackSetting;
-
-    // Page setup
     showUser();
 }
 
@@ -50,6 +45,17 @@ function logout() {
     _token = null;
     window.open('https://accounts.spotify.com/logout');
     location.reload();
+}
+
+
+function att() {
+    $('#tracks').append('<h1>asasas</h1>' + '<br>')
+    var id = '0tgVpDi06FyKpA1z0VMD4v'
+    $.get('/audio-features?ids=' + id + '&token=' + _token, function (popularity) {
+        $(".result").html(popularity);
+        alert("Load was performed." + data.danceability);
+
+    });
 }
 
 
@@ -99,16 +105,6 @@ function cl() {
 
 
 
-
-function att() {
-    $('#tracks').append('<h1>asasas</h1>' + '<br>')
-    var id = '0tgVpDi06FyKpA1z0VMD4v'
-    $.get('/audio-features?ids=' + id + '&token=' + _token, function (popularity) {
-        $(".result").html(popularity);
-        alert("Load was performed." + data.danceability);
-
-    });
-}
 
 
 // let id = data.tracks.items[0].id;

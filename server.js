@@ -138,7 +138,7 @@ app.post('/playlist', function(req, res) {
   let features = req.query.features;
   let userId, playlistUrl;
 
-  // 1. Get user ID
+
   let requestURL = spotifyBaseUrl + 'me';
 
   let options = {
@@ -149,8 +149,7 @@ app.post('/playlist', function(req, res) {
 
   request.get(options, function(error, response, body) {
     userId = body.id;
-    
-    // 2. Create playlist
+
     requestURL = spotifyBaseUrl + 'users/' + userId + '/playlists';
 
     options = {
@@ -164,7 +163,7 @@ app.post('/playlist', function(req, res) {
     request.post(options, function(error, response, body) {
       playlistUrl = body.tracks.href;
       
-      // 3. Add tracks to playlist
+
       requestURL = playlistUrl + '/?' +
       querystring.stringify({
         uris: tracks

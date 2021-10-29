@@ -6,20 +6,20 @@
     color: gr;
 }
 
-
 .btn-secondary:hover {
     color: skyblue;
 }
-
-/*
- * Base structure
- */
 
 body {
     text-shadow: 0 .05rem .1rem rgba(0, 0, 0, .5);
     font-family: 'Inter', sans-serif;
     background-color: #;
     color: ;
+}
+
+.bo {
+    background-image: .bg-light.bg-gradient;
+
 }
 
 .index {
@@ -84,7 +84,6 @@ h3 {
 }
 
 
-
 /* This is the style for the sliders on the Recomender page */
 
 .ui-widget-header {
@@ -120,8 +119,6 @@ h3 {
   border-color: skyblue;
 }
 
-/* UI */
-
 
 #tracks {
   width: 90%;
@@ -129,6 +126,7 @@ h3 {
   overflow-y: scroll;
   border: 1px #ccc solid;
   padding: 10px;
+background-color: aliceblue;
     
 }
 
