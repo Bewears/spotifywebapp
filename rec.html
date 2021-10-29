@@ -1,82 +1,119 @@
 <!DOCTYPE html>
-<html lang="">
+<html>
 <head>
-   <title>Spotify online</title>
+    <title>Spotify online</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://sp-bootstrap.global.ssl.fastly.net/8.0.0/sp-bootstrap.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="https://sp-bootstrap.global.ssl.fastly.net/8.0.0/sp-bootstrap.js"></script>
-    
-    <!-- Include the Web Playback SDK -->
-    <script src="https://sdk.scdn.co/spotify-player.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link href="style.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    
-    <h1>Spotify website wow</h1>
-        <div>
-          <h5>Number of tracks</h5>
-          <select id="number-tracks" class="form-control">
-            <option>10</option>
-            <option selected>20</option>
-            <option>30</option>
-            <option>40</option>
-            <option>50</option>
-          </select>
-        </div>
-        <h1></h1>
-       <span class="pull-right">
-          <span>Logged in as <span id="current-user"></span></span>
-          <button class="btn btn-secondary btn-sm" onclick="logout();">Logout</button>
-        </span>
-         <div>
-          <h5>Mode</h5>
-          <div class="checkbox-inline" onclick="getRecommendations();">
-            <label>
-              <input id="mode-major" type="checkbox" value="1" checked>
-              Major
-              <span class="control-indicator"></span>
-            </label>
-          </div>
-          <div class="checkbox-inline" onclick="getRecommendations();">
-            <label>
-              <input id="mode-minor" type="checkbox" value="0" checked>
-              Minor
-              <span class="control-indicator"></span>
-            </label>
-          </div>
-          <h5>Popularity (0-100)</h5><div id="popularity-slider"></div>
-          <h5>Tempo (40-200bpm)</h5><div id="tempo-slider"></div>
-          <h5>Valence ("positivity" of the track)</h5><div id="valence-slider"></div>
-          <h5>Energy</h5><div id="energy-slider"></div>
-          <h5>Acousticness</h5><div id="acousticness-slider"></div>
-          <h5>Danceability</h5><div id="danceability-slider"></div>
-          <h5>Instrumentalness</h5><div id="instrumentalness-slider"></div>
-          <h5>Liveness</h5><div id="liveness-slider"></div>
-          <h5>Speechiness</h5><div id="speechiness-slider"></div>
-          <h6>
-            Read about what all these audio features mean <a href="https://beta.developer.spotify.com/documentation/web-api/reference/tracks/get-audio-features/#audio-features-object">here</a>.
-          </h6>
-        </div>
-        
-    
-    
-     <div id="tracks">
-        <h4>Select some genres to get recommendations</h4>
-        <!-- Tracks to be appended here -->
-      </div>
-    
-    <h1 id="genre1">beebe</h1>
-    <h1 id="number1">number1</h1>
-    
-    <button onclick="getRecommendations()">HIT ME</button>
-    
-    <script src="script.js"></script>
+    <nav class="navbar navbar-expand navbar-dark bg-dark" aria-label="Second navbar example">
+        <div class="container-fluid">
+            <a class="navbar-brand btn btn-lg btn-secondary fw-bold border-white " href="index.html">Home</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample02" aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-  
-    
-</body>
-</html>
+            <div class="collapse navbar-collapse" id="navbarsExample02">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active  " aria-current="page" href="find.html">Attribute Finder</a>
+                    </li>
+                 
+
+                </ul>
+                <form>
+                    <span class="pull-right">
+                        <span class="log">Logged in as <span id="current-user"></span></span>
+                        <button class="navbar-brand btn btn-lg btn-secondary fw-bold border-white " onclick="logout();">Logout</button>
+                    </span>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+
+        <label for="genre">Select one or more genres (max of 5):</label>
+        <select id="genre" class="form-select" size="4" multiple aria-label="multiple select example" onclick="getRecommendations();">
+            <option value="acoustic">Acoustic</option>
+            <option value="alternative">Alternative</option>
+            <option value="alt-rock">Alt-rock</option>
+            <option value="blues">Blues</option>
+            <option value="chill">Chill</option>
+            <option value="classical">Classical</option>
+            <option value="club">Club</option>
+            <option value="country">Country</option>
+            <option value="dance">Dance</option>
+            <option value="death-metal">Death-metal</option>
+            <option value="dubstep">Dubstep</option>
+            <option value="electronic">Electronic</option>
+            <option value="folk">Folk</option>
+            <option value="funk">Funk</option>
+            <option value="garage">Garage</option>
+            <option value="hip-hop">Hip-hop</option>
+            <option value="indie">Indie</option>
+            <option value="indie-pop">Indie-pop</option>
+            <option value="metal">Metal</option>
+            <option value="new-age">New-age</option>
+            <option value="party">Party</option>
+            <option value="pop">Pop</option>
+            <option value="psych-rock">Psych-rock</option>
+            <option value="rock">Rock</option>
+            <option value="romance">Romance</option>
+            <option value="sad">Sad</option>
+            <option value="songwriter">Songwriter</option>
+            <option value="summer">Summer</option>
+            <option value="synth-pop">Synth-pop</option>
+        </select>
+<br>
+        <div>
+            <h5 class="container">Select some attributes:</h5>
+            <div class="checkbox-inline" onclick="getRecommendations();">
+
+            </div>
+            <h6>Popularity</h6>
+            <div id="popularity-slider"></div>
+            <h6>Tempo</h6>
+            <div id="tempo-slider"></div>
+            <h6>Valence ('positivity' found in the song)</h6>
+            <div id="valence-slider"></div>
+            <h6>Energy</h6>
+            <div id="energy-slider"></div>
+            <h6>Acousticness</h6>
+            <div id="acousticness-slider"></div>
+            <h6>Danceability</h6>
+            <div id="danceability-slider"></div>
+            <h6>Instrumentalness</h6>
+            <div id="instrumentalness-slider"></div>
+            <h6>Liveness</h6>
+            <div id="liveness-slider"></div>
+            <h6>Speechiness</h6>
+            <div id="speechiness-slider"></div>
+
+        </div>
+
+        <br>
+        <button class="btn btn-primary container " onclick="makePlaylist();">
+            MAKE PLAYLIST
+        </button>
+        <div id="notice" onclick="document.getElementById('notice').style.display='none';"></div>
+
+        <br>
+        <br>
+        <div id="tracks" class="container">
+            <h4>Select some genres to get recommendations</h4>
+            <!-- Tracks will be added here through JS -->
+        </div>
+    </div>
+
+    <script src="scriptR.js"></script>
+
+
+</body></html>

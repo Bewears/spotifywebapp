@@ -1,16 +1,14 @@
 
-/* Custom default button */
 .btn-secondary,
 .btn-secondary:focus {
   color: #333;
   text-shadow: none; /* Prevent inheritance from `body` */
+    color: gr;
 }
 
 
-
-
 .btn-secondary:hover {
-    color: lightgreen;
+    color: skyblue;
 }
 
 /*
@@ -18,7 +16,13 @@
  */
 
 body {
+    text-shadow: 0 .05rem .1rem rgba(0, 0, 0, .5);
+    font-family: 'Inter', sans-serif;
+    background-color: #;
+    color: ;
+}
 
+.index {
   background-image: url("https://www.pixsy.com/wp-content/uploads/2021/04/ben-sweet-2LowviVHZ-E-unsplash-1.jpeg");
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -26,11 +30,149 @@ body {
   
   text-shadow: 0 .05rem .1rem rgba(0, 0, 0, .5);
   box-shadow: inset 0 0 5rem rgba(0, 255, 0, .1);
-  font-family: monospace 
+  font-family: 'Inter', sans-serif;
 }
 
 .cover-container {
   max-width: 42em;
 }
 
-   
+.themed-grid-col {
+  padding-top: .75rem;
+  padding-bottom: .75rem;
+  background-color: rgba(86, 61, 124, .15);
+  border: 1px solid rgba(86, 61, 124, .2);
+}
+
+.themed-container {
+  padding: .75rem;
+  margin-bottom: 1.5rem;
+  background-color: rgba(0, 123, 255, .15);
+  border: 1px solid rgba(0, 123, 255, .2);
+}
+
+body {
+  padding-bottom: 20px;
+}
+
+.navbar {
+  margin-bottom: 20px;
+}
+
+.res{
+    padding-top: 20px;
+}
+.log {
+    color: white;
+}
+
+h3 {
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.inline * {
+  display: inline-block;
+}
+
+.spacer {
+  margin-right: 15px;
+}
+
+.space-after {
+  margin-bottom: 15px;
+}
+
+
+
+/* This is the style for the sliders on the Recomender page */
+
+.ui-widget-header {
+  background: #;
+  border: none;
+}
+
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-button, html .ui-button.ui-state-disabled:hover, html .ui-button.ui-state-disabled:active {
+  border: 2px solid  #0cbfe9;
+  background:  #0cbfe9;
+  outline: none;
+  cursor: pointer;
+  border-radius: 1.2em;
+}
+
+.ui-widget.ui-widget-content {
+  border: 1px solid skyblue;
+}
+
+.radio input[type="radio"]:checked ~ .control-indicator,
+.radio input[type="radio"]:checked:active ~ .control-indicator,
+.radio input[type="radio"]:checked:focus ~ .control-indicator,
+.radio-inline input[type="radio"]:checked ~ .control-indicator,
+.radio-inline input[type="radio"]:checked:active ~ .control-indicator,
+.radio-inline input[type="radio"]:checked:focus ~ .control-indicator,
+.checkbox input[type="checkbox"]:checked ~ .control-indicator,
+.checkbox input[type="checkbox"]:checked:active ~ .control-indicator,
+.checkbox input[type="checkbox"]:checked:focus ~ .control-indicator,
+.checkbox-inline input[type="checkbox"]:checked ~ .control-indicator,
+.checkbox-inline input[type="checkbox"]:checked:active ~ .control-indicator,
+.checkbox-inline input[type="checkbox"]:checked:focus ~ .control-indicator {
+  background-color: skyblue;
+  border-color: skyblue;
+}
+
+/* UI */
+
+
+#tracks {
+  width: 90%;
+  height: 30%;
+  overflow-y: scroll;
+  border: 1px #ccc solid;
+  padding: 10px;
+    
+}
+
+.bet {
+    float: right;
+}
+.track-element > div {
+  display: inherit;
+}
+
+#tracks::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 7px;
+}
+
+.track-element {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  cursor: pointer;
+  padding: 20px 0 10%;
+    
+}
+
+
+.track-element:hover {
+  background-color: #eee;
+}
+
+.current-track {
+  background-color: #f573a0;
+}
+
+.current-track a {
+  color: white;
+}
+
+.current-track:hover {
+  background-color: #f573a0;
+}
+
+.album-art {
+  width: 150px;
+  height: 150px;
+  margin: 0 20px;
+}
+
