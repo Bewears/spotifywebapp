@@ -200,7 +200,7 @@ function getRecommendations() {
     // Constant of playlist legnth
     let limit = 20;
 
-    // Get selected genres
+    // Get genres selected by user 
     let genres = [];
     $('#genre :selected').each(function () {
         genres.push($(this).val());
@@ -217,11 +217,9 @@ function getRecommendations() {
     localStorage.setItem('currentGenres', genresString);
     $('#current-genres').text(genresString);
 
-    // Get slider values
+    // Get attribute values
     let audioFeatures = getSliderValues();
     localStorage.setItem('currentFeatures', JSON.stringify(audioFeatures));
-
-    // Send the request
     $.get('/recommendations?limit=' + limit + '&seed_genres=' + genresString + '&' + $.param(audioFeatures) + '&token=' + _token, function (data) {
         $('#tracks').empty();
         let trackIds = [];
@@ -249,7 +247,7 @@ function renderTracks(ids) {
     $.get('/tracks?ids=' + ids.join() + '&token=' + _token, function (tracks) {
         tracks.forEach(function (track) {
             let image = track.album.images ? track.album.images[0].url : 'https://upload.wikimedia.org/wikipedia/commons/3/3c/No-album-art.png';
-            let trackElement = '<div class="track-element" id="' + track.uri + '" onclick="play(\'' + track.uri + '\');"><div><img class="album-art" src="' + image + '"/><div><a href="https://open.spotify.com/track/' + track.id + '">' + track.name + '</a><p>' + track.artists[0].name + '</p></div></div></div>';
+            let trackElement = '<div class="track-element" id="' + track.uri + '" ><div><img class="album-art" src="' + image + '"/><div><a href="https://open.spotify.com/track/' + track.id + '">' + track.name + '</a><p>' + track.artists[0].name + '</p></div></div></div>';
             $('#tracks').append(trackElement);
         })
     });

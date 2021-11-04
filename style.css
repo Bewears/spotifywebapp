@@ -132,6 +132,13 @@ background-color: aliceblue;
 
 .bet {
     float: right;
+    font-size: 2vw;
+
+}
+
+.mid {
+    font-size: 2vw;
+
 }
 .track-element > div {
   display: inherit;
@@ -173,4 +180,3 @@ background-color: aliceblue;
   height: 150px;
   margin: 0 20px;
 }
-

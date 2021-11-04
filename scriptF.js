@@ -1,4 +1,4 @@
-// Get token 
+// Check hash for token
 const hash = window.location.hash
     .substring(1)
     .split('&')
@@ -16,7 +16,7 @@ let _token = hash.access_token;
 
 const authEndpoint = 'https://accounts.spotify.com/authorize';
 
-// Program authentication
+// Replace with your app's client ID, redirect URI and desired scopes
 const clientId = 'f0d7eec2dc434d798222892db1bc3736';
 const redirectUri = 'http://localhost:8080/find.html';
 const scopes = [
@@ -27,10 +27,15 @@ const scopes = [
   'user-modify-playback-state'
 ];
 
+// If there is no token, redirect to Spotify authorization
 if (!_token) {
     window.location = `${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join('%20')}&response_type=token`;
 } else {
 
+    let deviceId;
+    let playbackSetting;
+
+    // Page setup
     showUser();
 }
 
@@ -45,17 +50,6 @@ function logout() {
     _token = null;
     window.open('https://accounts.spotify.com/logout');
     location.reload();
-}
-
-
-function att() {
-    $('#tracks').append('<h1>asasas</h1>' + '<br>')
-    var id = '0tgVpDi06FyKpA1z0VMD4v'
-    $.get('/audio-features?ids=' + id + '&token=' + _token, function (popularity) {
-        $(".result").html(popularity);
-        alert("Load was performed." + data.danceability);
-
-    });
 }
 
 
@@ -75,8 +69,8 @@ function search() {
     var q2 = document.getElementById("sea").value;
     var limit2 = 6
     $.get('/search?q=' + q2 + '&type=track&limit=' + limit2 + '&token=' + _token, function (data) {
-        let trackIds = [];
-        let trackUris = [];
+        var trackIds = [];
+        var trackUris = [];
         $('#tracks').append(trackIds + '<br>')
         let i = 0;
         do {
@@ -84,16 +78,25 @@ function search() {
             let title = data.tracks.items[i].name;
             let cover = data.tracks.items[i].album.images[1].url;
             let artist = data.tracks.items[i].artists[0].name;
-            $('#sear').append('<div id="' + [i] + '" id="go" class="col-sm-12 themed-grid-col"><img src="' + cover + '"></img>' + title + ' By ' + artist + '<div class="bet align-middle"><h5>Danceability: ' + data.Danceability + '</h5> <h5>Acousticness: ' + data.Acousticness + '</h5> <h5>Energy: ' + data.Energy + '</h5> <h5>Loudness: ' + data.Loudness + '</h5> <h5>Instrumentalness: ' + data.Instrumentalness + '</h5> <h5>Valence: ' + data.Valence + '</h5></div></div>')
-            $('#tracks').append(data.tracks.items[i].name + '<br>')
+            let trackid = data.tracks.items[i].id;
             trackIds.push(data.tracks.items[i].id)
             trackUris.push(data.tracks.items[i].uri)
-
-        } while (i < 5);
+            $.get('/audio-features?ids=' + trackid + '&token=' + _token, function (data) {
+                var danceability = data.audio_features[0].danceability;
+                var acousticness = data.audio_features[0].acousticness;
+                let energy = data.audio_features[0].energy;
+                let instrumentalness = data.audio_features[0].instrumentalness;
+                let valence = data.audio_features[0].valence;
+                let liveness = data.audio_features[0].liveness;
+                $('#sear').append('<div class="mid col-sm-4 themed-grid-col d-flex track-elemen justify-content-center" id="go"> ' + title + ' By ' + artist + '</div><div id="' + [i] + '" class="col col-sm-4 themed-grid-col d-flex"><img class="img-fluid" src="' + cover + '"></div><div class="col col-sm-4 themed-grid-col d-flex"><div class="bet align-middle d-inline-flex">Danceability: ' + danceability + '<br>Acousticness: ' + acousticness + '<br>Energy: ' + energy + '<br>Liveness: ' + liveness + '<br>Instrumentalness: ' + instrumentalness + '<br>Valence: ' + valence + '</div></div></div>');
+                $('#tracks').append(data.tracks.items[i].name + '<br>')
+            });
+        } while (i < 5)
 
     });
 }
 
+          //remove the searches
 function cl() {
     let a = 0;
     do {
@@ -104,11 +107,28 @@ function cl() {
 }
 
 
+function att() {
+    $('#searhg').append('<h1>asasas</h1>' + '<br>')
+    var id = '0tgVpDi06FyKpA1z0VMD4v'
+    $.get('/audio-features?ids=' + id + '&token=' + _token, function (data) {
+        alert(data.audio_features[0].energy);
+    });
+}
+
+
+
+
 
 
 
 // let id = data.tracks.items[0].id;
 /*
+
+ $.get('/audio-features?ids=' + id + '&token=' + _token ", function ( data ):  
+        $(".result").html(data); alert("Load was performed.")
+    });
+        
+        
 dict = {}
 list = []
 function search() {
